@@ -102,9 +102,9 @@ if ${use_color} ; then
 
 	
 	if [[ ${EUID} == 0 ]] ; then
-		PS1="$red\h$cyan\$(__git_ps1) \W$red \$ $reset "
+		PS1="$red\h$cyan \$(__git_ps1) \W$red \$ $reset"
 	else
-		PS1="$green\u$light_gray\$(__git_ps1) \W$green \$ $reset "
+		PS1="$green\u$light_gray\$(__git_ps1)$yellow \W \$ $reset"
 	fi
 
 	alias ls='ls --color=auto'
@@ -130,7 +130,7 @@ alias more=less
 
 xhost +local:root > /dev/null 2>&1
 
-complete -cf sudo
+# complete -cf sudo
 
 # Bash won't get SIGWINCH if another process is in the foreground.
 # Enable checkwinsize so that bash will check the terminal size when
