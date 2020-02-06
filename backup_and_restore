@@ -1,0 +1,9 @@
+These commands are made to backup a whole partition into one file "backup.tar.gz"
+
+Backup:
+    sudo tar -cvpzf backup.tar.gz --exclude=/backup.tar.gz --one-file-system /
+    
+Backup (excluding timeshift):
+    sudo tar -cvpzf backup.tar.gz --exclude=/backup.tar.gz --exclude='/timeshift/*' --one-file-system / 
+Restore:
+    sudo tar -xvpzf /path/to/backup.tar.gz -C /restore/location --numeric-owner
