@@ -2,6 +2,16 @@
 # ~/.bashrc
 #
 
+#Tilix VTE config
+
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        source /etc/profile.d/vte.sh
+fi
+
+# Set homebrew environment (linuxbrew) variables
+
+[ -d /home/linuxbrew/.linuxbrew ] && eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
 # Enable git tab completion
 source ~/git/Scripts/git-completion.bash
 # Import for git prompt related
@@ -169,3 +179,15 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
+
+# Avoid duplicates
+
+HISTCONTROL=ignoredups:erasedups
+
+# When the shell exits, append to the history file instead of overwriting it
+
+shopt -s histappend
+
+# After each command, append to the history file and reread it
+
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
